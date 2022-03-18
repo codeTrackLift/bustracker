@@ -13,13 +13,14 @@
 </ol>
 
 ## About
-This was developed during Bootcamp Week 6. Starter code was supplied. 
+This was developed during Bootcamp Week 6 and uses data from the [Massachusetts Bay Transportation Authority](https://www.mbta.com/) (MBTA) and [Mapbox](https://www.mapbox.com/) APIs to show real-time bus locations.
 
 >**Assignment Objectives**:
 <ol>
-    <li>Use data from a public API</li>
-    <li>Create map markers based on real time locations</li>
-    <li>Map markers positions should update as real time locations change</li>
+    <li>Generate a map data from the Mapbox API</li>
+    <li>Fetch data from the MBTA public API</li>
+    <li>Create map markers based on real time bus locations</li>
+    <li>Map markers positions should update as real-time locations change</li>
 </ol>
 
 >**Custom Features**:
@@ -40,7 +41,7 @@ Click to change the map to 'light' mode (streets-v11) or back to 'dark' mode (da
 
 > Run Button
 
-Click to fetch API data and create bus markers on the map. Once clicked, button is disabled and button text changes to 'Live'.  API data is refreshed every 15s. 
+Click to fetch MBTA API data and create bus markers on the map. Once clicked, button is disabled and button text changes to 'Live'.  API data is refreshed every 15s. 
 
 > Map Controls
 
@@ -50,5 +51,6 @@ Notes:  See [https://docs.mapbox.com/](https://docs.mapbox.com/) for mapbox docu
 - [x] Include update/refresh data on map
 - [x] Add light / dark mode toggle
 - [x] Make buttons look 'OEM' and responsive
+- [x] Mobile compatible
 
 This is a progression project, no further development is anticipated.
