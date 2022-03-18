@@ -28,20 +28,20 @@ This was developed during Bootcamp Week 6 and uses data from the [Massachusetts 
     <li>Color coded map markers</li>
     <li>Last updated timestamp</li>
     <li>Refresh countdown timer</li>
-    <li>Custom 'OEM' button styling</li>
     <li>Light / dark mode toggle button</li>
     <li>Button and map control hover effects</li>
     <li>Run button status change to 'Live'</li>
+    <li>'OEM' button styling</li>
 </ol>
 
 ## How to Run
 > Mode Button
 
-Click to change the map to 'light' mode (streets-v11) or back to 'dark' mode (dark-v10).
+Change the map to 'light' mode (streets-v11) or back to 'dark' mode (dark-v10).
 
 > Run Button
 
-Click to fetch MBTA API data and create bus markers on the map. Once clicked, button is disabled and button text changes to 'Live'.  API data is refreshed every 15s. 
+Fetch MBTA API data and create bus markers on the map. Once clicked, button is disabled and button text changes to 'Live'.  API data is refreshed every 15s. 
 
 > Map Controls
 

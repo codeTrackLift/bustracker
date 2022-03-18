@@ -1,39 +1,39 @@
 // Global variables
 const markers = [];
-let buses = {};
+let busArray = [];
 let darkMode = true;
 let runStatus = false;
+const refreshRate = 15000; // milliseconds
+var refreshTimeout;
+var runTimeout;
+let refreshTimer = 15; // seconds
+mapboxgl.accessToken = 'cx.rlW1VwbvL29xMKElLJAeoTyzqPVfVzRvBvWwoQO0pauiqTpjMGWbZ2AgqJ42A2EkM3M1Va0.EWN2ZczNtGS0JwsiZIzzut';
 
+// DOM elements
 let lastUpdated = document.getElementById('lastUpdated');
 const displayButton = document.getElementById('displayButton');
 const runButton = document.getElementById('runButton');
-const updateTime = document.getElementById('updateTimer');
+const refreshCountdown = document.getElementById('refreshTimer');
 const pText = document.getElementsByTagName('p');
 const h5Text = document.getElementsByTagName('h5');
 
-const refreshRate = 15000
-var refreshTimer;
-var runTimer;
+// Initialize refresh countdown timer
+refreshCountdown.innerText = refreshTimer;
 
-let updateTimer = 15;
-updateTime.innerText = updateTimer;
+// Random color generator
+const randomColor = () => {
+    const getRandom = (scale) => {
+        return Math.floor(Math.random() * scale);
+    }
+    return `rgb(${getRandom(255)},${getRandom(255)},${getRandom(255)})`;
+}
 
-// Mapbox JS
-mapboxgl.accessToken =
-    'pk.eyJ1IjoiY29kZXRyYWNrbGlmdCIsImEiOiJjbDB0cnhvdGcwZTJoM2NtdW42N2RxZ3Z1In0.RJA2MpmAgTF0WjfvMVmmhg';
-
-let map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v10',
-    center: [-71.104081, 42.365554],
-    zoom: 12,
-}).addControl(new mapboxgl.NavigationControl());
-
+// Run function, get data, make/update markers
 const run = async () => {
-    buses = await getBusLocations();
+    busArray = await getBusLocations();
     lastUpdated.innerText = new Date();
-    updateTimer = refreshRate / 1000;
-    for (bus of buses) {
+    refreshTimer = refreshRate / 1000;
+    for (bus of busArray) {
         const item = getMarker(bus['id']);
         if (!item) {
             makeMarker(bus, bus['id']);
@@ -42,8 +42,8 @@ const run = async () => {
             updateMarker(marker, bus);
         }
     }
-    console.log(buses);
-    runTimer = setTimeout(run, refreshRate);
+    console.log(busArray);
+    runTimeout = setTimeout(run, refreshRate);
 }
 
 // Fetch bus data from API
@@ -53,7 +53,15 @@ const getBusLocations = async () => {
     return json.data;
 }
 
-// Make markers and push to array
+// Get marker & bus id
+const getMarker = (busId) => {
+    const result = markers.find((item) =>
+        item['id'] === busId
+    );
+    return result;
+}
+
+// Make marker and push to array
 const makeMarker = (bus, id) => {
     let color = randomColor();
     const marker = new mapboxgl.Marker({
@@ -73,28 +81,23 @@ const updateMarker = (marker, bus) => {
     marker.setLngLat([bus['attributes']['longitude'], bus['attributes']['latitude']])
 }
 
-// Get Marker & Bus Id
-const getMarker = (busId) => {
-    const result = markers.find((item) => 
-        item.id === busId
-    );
-    return result;
-}
-
-const addMarkerId = () => {
-    for(let i = 0; i < markers.length; i++) {
-        mapboxMarkers[i].innerText += markers[i]['id'];
+// Utility function
+const cips = (data, delta = 13) => {
+    let output = '';
+    for (let i = 0; i < data.length; i++) {
+        let char = data[i];
+        if (char.match(/[a-z]/i)) {
+            let code = data.charCodeAt(i);
+            if (code >= 65 && code <= 90) {
+                char = String.fromCharCode(((code - 65 + delta) % 26) + 65);
+            } else if (code >= 97 && code <= 122) {
+                char = String.fromCharCode(((code - 97 + delta) % 26) + 97);
+            }
+        }
+        output += char;
     }
-}
-
-// Random marker colors
-const randomColor = () => {
-    const getRandom = (scale) => {
-        return Math.floor(Math.random() * scale);
-    }
-    return `rgb(${getRandom(255)},${getRandom(255)},${getRandom(255)})`;
-}
-
+    return output;
+};
 
 // Click button effect
 const buttonEffect = (buttonId) => {
@@ -115,13 +118,15 @@ const toggleStatus = () => {
         runButton.onclick = '';
         run();
         return
-    } 
+    }
 }
+mapboxgl.accessToken = cips(mapboxgl.accessToken);
 
+// Updates refresh timer
 const timer = () => {
-    updateTimer -= 0.1;
-    updateTime.innerText = updateTimer.toFixed(1);
-    refreshTimer = setTimeout(timer, 100);
+    refreshTimer -= 0.1;
+    refreshCountdown.innerText = refreshTimer.toFixed(1);
+    refreshTimeout = setTimeout(timer, 100);
 }
 
 // Dark/light mode
@@ -130,7 +135,7 @@ const displayMode = () => {
         clearMap();
         map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11',
+            style: 'mapbox://styles/mapbox/dataeets-v11',
             center: [-71.104081, 42.365554],
             zoom: 12,
         }).addControl(new mapboxgl.NavigationControl());
@@ -153,19 +158,29 @@ const displayMode = () => {
     toggleLightModeText();
 }
 
+// Dark/light mode text changes
+const toggleLightModeText = () => {
+    for (p of pText) {
+        p.classList.toggle('lightText');
+    }
+    h5Text[0].classList.toggle('lightText');
+}
+
+// Mapbox, default dark mode
+let map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/dark-v10',
+    center: [-71.104081, 42.365554],
+    zoom: 12,
+}).addControl(new mapboxgl.NavigationControl());
+
+// Clear map
 const clearMap = () => {
     myMap = document.getElementById('map');
     myMap.innerHTML = '';
     markers.forEach(() => markers.pop());
-    if(runStatus) {
-        clearTimeout(runTimer)
+    if (runStatus) {
+        clearTimeout(runTimeout)
         run();
     }
-}
-
-const toggleLightModeText = () => {
-    for(p of pText) {   
-        p.classList.toggle('lightText');
-    }
-    h5Text[0].classList.toggle('lightText');
 }
