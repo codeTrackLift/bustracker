@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js"></script>
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css">
+
+    <!-- Font CSS Links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="./busLogo.ico">
+    
+    <title>Real-Time Bus Tracker</title>
+</head>
+
+<body>
+
+    <div id="map"></div>
+
+    <div class="map-overlay top">
+        <div>
+            <div>
+                <button id="displayButton" onclick="displayMode();buttonEffect('displayButton')">Mode</button>
+                <h5>Light / Dark</h5>
+            </div>
+            <div id="runButtonDiv">
+                <button id="runButton" class='' onclick="toggleStatus();timer();buttonEffect('runButton')">Run</button>
+                <p><span id="updateTimer"></span>s refresh</p>
+            </div>
+            <p>Updated: <span id="lastUpdated">Not Running</span></p>
+        </div>
+        <ul id="list">
+        </ul>
+    </div>
+
+    <footer>
+        <p>Copyright ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            <a href="https://www.codebypete.com">
+                <img src="https://www.codebypete.com/pics/pharma2code_icon.gif" style='height:2rem;'
+                    alt="codeByPete Logo.">
+                <span style="color:silver;">code</span><span style="color:#00857c;">By</span><span
+                    style="color:lime;">Pete</span>
+            </a>
+        </p>
+        <a href="https://codetracklift.github.io/bustracker/" target="_blank"><img class="socialLogo"
+                src="https://www.codebypete.com/pics/GitHub-Mark-Light-64px.png" style="border-radius:50%" alt="GitHub Icon"></a>
+        <a href="https://twitter.com/codetracklift" target="_blank"><img class="socialLogo"
+                src="https://www.codebypete.com/pics/Twitter_social_icons-circle-white.png" style="border-radius:50%" alt="Twitter Icon"></a>
+        <a href="https://www.linkedin.com/in/codebypete/" target="_blank"><img class="socialLogo"
+                src="https://www.codebypete.com/pics/linkedin_white.png" alt="LinkedIn Icon"></a>
+    </footer>
+    
+    <script src="./mapanimation.js"></script>
+</body>
+
+</html>

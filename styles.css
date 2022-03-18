@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.map-overlay {
+    position: absolute;
+    left: 0;
+    padding: 10px;
+}
+
+.map-overlay>div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25rem;
+}
+
+.map-overlay>div>div {
+    display: flex;
+    flex-direction: column;
+}
+
+li {
+    list-style-type: none;
+    margin-left: -2rem;
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+button {
+    height: 1.5rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: rgb(50,50,50);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    width: 5rem;
+    transition: all 0.25s ease-in-out;
+}
+
+button:hover,
+.mapboxgl-ctrl>button:hover {
+    background-color: cornflowerblue;
+}
+
+.mapboxgl-ctrl>button:hover {
+    background-color: cornflowerblue !important;
+}
+
+#runButton {
+    background-color: lime;
+}
+
+#runButton:hover {
+    background-color: transparent;
+    border-color: cornflowerblue;
+    color: cornflowerblue;
+}
+
+.buttonEffect {
+    background-color: transparent !important;
+    border-color: cornflowerblue !important;
+    color: cornflowerblue !important;
+}
+
+h5 {
+    margin: 0 auto;
+    color: silver;
+    text-shadow: 1px 1px black;
+}
+
+p {
+    margin: auto;
+    color: silver;
+    font-size: 0.75rem;
+    text-shadow: 1px 1px black;
+}
+
+.lightmode {
+    border-color: silver;
+}
+
+.lightText {
+    color: rgb(50,50,50);
+    text-shadow: none;
+    font-weight: 500;
+}
+
+/* Footer CSS below */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+    color: white;
+}
+
+footer>a,
+footer>p {
+    margin: auto 0;
+}
+
+footer>p>a>span {
+    font-style: italic;
+}
+
+footer>p>a {
+    text-decoration: none;
+}
+
+footer>p>a>img {
+    animation: slowSpin 5s ease-in-out infinite;
+    margin-bottom: -0.5rem;
+}
+
+@keyframes slowSpin {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(-1, 1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.socialLogo {
+    max-height: 1.5rem;
+    transition: transform 0.5s ease-in-out;
+    margin-bottom: -0.5rem;
+    background-color: black!important;
+    border: 2px solid black;
+    opacity: 0.5;
+}
+
+.socialLogo:hover {
+    transform: scale(-1, 1) scale(1);
+}
