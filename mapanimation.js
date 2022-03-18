@@ -1,5 +1,5 @@
 // Global variables
-const markerArray = [];
+let markerArray = [];
 let busArray = [];
 let darkMode = true;
 let runStatus = false;
@@ -178,9 +178,9 @@ let map = new mapboxgl.Map({
 const clearMap = () => {
     myMap = document.getElementById('map');
     myMap.innerHTML = '';
-    markerArray.forEach(() => markerArray.pop());
+    markerArray = [];
     if (runStatus) {
         clearTimeout(runTimeout)
-        run();
+        setTimeout(run,500);
     }
 }
