@@ -111,6 +111,7 @@ const buttonEffect = (buttonId) => {
 }
 
 // Toggle run status, currently only on working
+mapboxgl.accessToken = cips(mapboxgl.accessToken);
 const toggleStatus = () => {
     if (!runStatus) {
         runStatus = !runStatus;
@@ -120,7 +121,6 @@ const toggleStatus = () => {
         return
     }
 }
-mapboxgl.accessToken = cips(mapboxgl.accessToken);
 
 // Updates refresh timer
 const timer = () => {
