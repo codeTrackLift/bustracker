@@ -1,12 +1,12 @@
 // Global variables
-const markers = [];
+const markerArray = [];
 let busArray = [];
 let darkMode = true;
 let runStatus = false;
-const refreshRate = 15000; // milliseconds
-var refreshTimeout;
 var runTimeout;
+var refreshTimeout;
 let refreshTimer = 15; // seconds
+const refreshRate = 15000; // milliseconds
 mapboxgl.accessToken = 'cx.rlW1VwbvL29xMKElLJAeoTyzqPVfVzRvBvWwoQO0pauiqTpjMGWbZ2AgqJ42A2EkM3M1Va0.EWN2ZczNtGS0JwsiZIzzut';
 
 // DOM elements
@@ -28,7 +28,7 @@ const randomColor = () => {
     return `rgb(${getRandom(255)},${getRandom(255)},${getRandom(255)})`;
 }
 
-// Run function, get data, make/update markers
+// Run tracker, get data, make/update markerArray
 const run = async () => {
     busArray = await getBusLocations();
     lastUpdated.innerText = new Date();
@@ -55,7 +55,7 @@ const getBusLocations = async () => {
 
 // Get marker & bus id
 const getMarker = (busId) => {
-    const result = markers.find((item) =>
+    const result = markerArray.find((item) =>
         item['id'] === busId
     );
     return result;
@@ -73,7 +73,7 @@ const makeMarker = (bus, id) => {
         "marker": marker,
         "id": id
     };
-    markers.push(item);
+    markerArray.push(item);
 }
 
 // Update marker location
@@ -82,16 +82,16 @@ const updateMarker = (marker, bus) => {
 }
 
 // Utility function
-const cips = (data, delta = 13) => {
+const cips = (data) => {
     let output = '';
     for (let i = 0; i < data.length; i++) {
         let char = data[i];
         if (char.match(/[a-z]/i)) {
             let code = data.charCodeAt(i);
             if (code >= 65 && code <= 90) {
-                char = String.fromCharCode(((code - 65 + delta) % 26) + 65);
+                char = String.fromCharCode(((code - 65 + 13) % 26) + 65);
             } else if (code >= 97 && code <= 122) {
-                char = String.fromCharCode(((code - 97 + delta) % 26) + 97);
+                char = String.fromCharCode(((code - 97 + 13) % 26) + 97);
             }
         }
         output += char;
@@ -166,7 +166,7 @@ const toggleLightModeText = () => {
     h5Text[0].classList.toggle('lightText');
 }
 
-// Mapbox, default dark mode
+// Mapbox default dark mode
 let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
@@ -174,11 +174,11 @@ let map = new mapboxgl.Map({
     zoom: 12,
 }).addControl(new mapboxgl.NavigationControl());
 
-// Clear map
+// Clear map, refreshes if running
 const clearMap = () => {
     myMap = document.getElementById('map');
     myMap.innerHTML = '';
-    markers.forEach(() => markers.pop());
+    markerArray.forEach(() => markerArray.pop());
     if (runStatus) {
         clearTimeout(runTimeout)
         run();
