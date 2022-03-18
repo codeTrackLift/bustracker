@@ -1,6 +1,6 @@
 # <img src='https://www.codebypete.com/pics/about/mitxPro_logoStacked.jpg' alt='MIT xPro logo' width='30'> Full Stack Bootcamp: Real-Time Bus Tracker Project
 
-<img src='./busLogo.ico' alt='Bus Logo' width='30'>***Try Demo:*** [https://codetracklift.github.io/bustracker](https://codetracklift.github.io/bustracker/)
+<img src='./busLogo.ico' alt='Bus Logo' width='30'> ***Try Demo:*** [https://codetracklift.github.io/bustracker](https://codetracklift.github.io/bustracker/)
 
 >**Skills Utilized**:
 <ol>
@@ -30,7 +30,7 @@ This was developed during Bootcamp Week 6. Starter code was supplied.
     <li>Custom 'OEM' button styling</li>
     <li>Light / dark mode toggle button</li>
     <li>Button and map control hover effects</li>
-    <li>Run button status change to 'Running'</li>
+    <li>Run button status change to 'Live'</li>
 </ol>
 
 ## How to Run
@@ -40,7 +40,7 @@ Click to change the map to 'light' mode (streets-v11) or back to 'dark' mode (da
 
 > Run Button
 
-Click to fetch API data and create bus markers on the map. Once clicked, button is disabled and button text changes to 'Running'.  API data is refreshed every 15s. 
+Click to fetch API data and create bus markers on the map. Once clicked, button is disabled and button text changes to 'Live'.  API data is refreshed every 15s. 
 
 > Map Controls
 

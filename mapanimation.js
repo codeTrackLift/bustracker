@@ -107,11 +107,11 @@ const buttonEffect = (buttonId) => {
     });
 }
 
-// Toggle run status, currently only running
+// Toggle run status, currently only on working
 const toggleStatus = () => {
     if (!runStatus) {
         runStatus = !runStatus;
-        runButton.innerText = 'Running';
+        runButton.innerText = 'Live';
         runButton.onclick = '';
         run();
         return
