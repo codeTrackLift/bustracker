@@ -117,6 +117,7 @@ const toggleStatus = () => {
         runStatus = !runStatus;
         runButton.innerText = 'Live';
         runButton.onclick = '';
+        runButton.classList.add('buttonEffect');
         run();
         return
     }
