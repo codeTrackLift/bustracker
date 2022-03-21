@@ -33,17 +33,17 @@ h6 {
     color: silver;
     font-weight: 900;
     font-size: 1rem;
-    margin: -1rem 0;
+    margin: -0.25rem 0 -1rem 0;
     text-shadow: 2px 2px black;
     letter-spacing: 0.125rem;
     text-align: center;
 }
 
 ul {
-    margin-left: -1rem;
+    margin-left: -2rem;
     display: flex;
     flex-wrap: wrap;
-    width: 90vw;
+    width: 80vw;
 }
 
 li {
