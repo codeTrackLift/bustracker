@@ -32,14 +32,15 @@ body {
 h6 {
     color: silver;
     font-weight: 900;
-    font-size: 1.5rem;
-    margin: -0.5rem 0;
+    font-size: 1rem;
+    margin: -1rem 0;
     text-shadow: 2px 2px black;
     letter-spacing: 0.125rem;
     text-align: center;
 }
 
 ul {
+    margin-left: -1rem;
     display: flex;
     flex-wrap: wrap;
     width: 90vw;
@@ -48,7 +49,7 @@ ul {
 li {
     list-style-type: none;
     font-weight: 900;
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 0.25rem;
     -webkit-filter: drop-shadow(1px 1px 1px black);
     filter: drop-shadow(1px 1px 1px black);

@@ -7,7 +7,7 @@ var runTimeout;
 var refreshTimeout;
 let refreshTimer = 10; // seconds
 const refreshRate = 10000; // milliseconds
-mapboxgl.accessToken = 'cx.rlW1VwbvL29xMKElLJAeoTyzqPVfVzRvBvWwoQO6q2WvqQDlMKqmZ2gko2fjMmZlLKE5Va0.xmnDmOvxA-E0XuvW2-wH3j'; 
+mapboxgl.accessToken = 'cx.rlW1VwbvL29xMKElLJAeoTyzqPVfVzRvBvWwoQO6q2WvqQDlMKqmZ2gko2fjMmZlLKE5Va0.xmnDmOvxA-E0XuvW2-wH3j';  
 
 // DOM elements
 let lastUpdated = document.getElementById('lastUpdated');
