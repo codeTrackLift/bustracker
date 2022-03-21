@@ -26,6 +26,7 @@ This was developed during Bootcamp Week 6 and uses data from the [Massachusetts 
 >**Custom Features**:
 <ol>
     <li>Color coded map markers</li>
+    <li>Color coded 'bus lines' list</li>
     <li>Last updated timestamp</li>
     <li>Refresh countdown timer</li>
     <li>Light / dark mode toggle button</li>
@@ -52,5 +53,6 @@ Notes:  See [https://docs.mapbox.com/](https://docs.mapbox.com/) for mapbox docu
 - [x] Add light / dark mode toggle
 - [x] Make buttons look 'OEM' and responsive
 - [x] Mobile compatible
+- [x] Add color coded 'bus lines' list
 
 This is a progression project, no further development is anticipated.
