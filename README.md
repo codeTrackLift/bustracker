@@ -42,7 +42,7 @@ Change the map to 'light' mode (streets-v11) or back to 'dark' mode (dark-v10).
 
 > Run Button
 
-Fetch MBTA API data and create bus markers on the map. Once clicked, button is disabled and button text changes to 'Live'.  API data is refreshed every 15s. 
+Fetch MBTA API data and create bus markers on the map. Once clicked, button is disabled and button text changes to 'Live'.  API data is refreshed every 10s. 
 
 > Map Controls
 
