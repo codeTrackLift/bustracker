@@ -29,11 +29,29 @@ body {
     flex-direction: column;
 }
 
+h6 {
+    color: silver;
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin: -0.5rem 0;
+    text-shadow: 2px 2px black;
+    letter-spacing: 0.125rem;
+    text-align: center;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90vw;
+}
+
 li {
     list-style-type: none;
-    margin-left: -2rem;
-    font-weight: 500;
-    font-size: 0.75rem;
+    font-weight: 900;
+    font-size: 1.5rem;
+    padding: 0.25rem;
+    -webkit-filter: drop-shadow(1px 1px 1px black);
+    filter: drop-shadow(1px 1px 1px black);
 }
 
 button {

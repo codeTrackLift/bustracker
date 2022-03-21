@@ -5,9 +5,9 @@ let darkMode = true;
 let runStatus = false;
 var runTimeout;
 var refreshTimeout;
-let refreshTimer = 15; // seconds
-const refreshRate = 15000; // milliseconds
-mapboxgl.accessToken = 'cx.rlW1VwbvL29xMKElLJAeoTyzqPVfVzRvBvWwoQO6q2WvqQDlMKqmZ2gko2fjMmZlLKE5Va0.xmnDmOvxA-E0XuvW2-wH3j';
+let refreshTimer = 10; // seconds
+const refreshRate = 10000; // milliseconds
+mapboxgl.accessToken = 'cx.rlW1VwbvL29xMKElLJAeoTyzqPVfVzRvBvWwoQO6q2WvqQDlMKqmZ2gko2fjMmZlLKE5Va0.xmnDmOvxA-E0XuvW2-wH3j'; 
 
 // DOM elements
 let lastUpdated = document.getElementById('lastUpdated');
@@ -43,6 +43,7 @@ const run = async () => {
         }
     }
     console.log(busArray);
+    updateList();
     runTimeout = setTimeout(run, refreshRate);
 }
 
@@ -51,14 +52,6 @@ const getBusLocations = async () => {
     const response = await fetch('https://api-v3.mbta.com/vehicles?filter[route]=1&include=trip');
     const json = await response.json();
     return json.data;
-}
-
-// Get marker & bus id
-const getMarker = (busId) => {
-    const result = markerArray.find((item) =>
-        item['id'] === busId
-    );
-    return result;
 }
 
 // Make marker and push to array
@@ -71,14 +64,33 @@ const makeMarker = (bus, id) => {
         .addTo(map);
     const item = {
         "marker": marker,
-        "id": id
+        "id": id,
+        "color": color
     };
     markerArray.push(item);
+}
+
+// Get marker & bus id
+const getMarker = (busId) => {
+    const result = markerArray.find((item) =>
+        item['id'] === busId
+    );
+    return result;
 }
 
 // Update marker location
 const updateMarker = (marker, bus) => {
     marker.setLngLat([bus['attributes']['longitude'], bus['attributes']['latitude']])
+}
+
+// Update List
+const updateList = () => {
+    let html = '';
+    let list = document.getElementById('list');
+    for (marker of markerArray) {
+        html += `<li id='${marker.id}' style='color:${marker.color}'>${marker.id.toUpperCase()}</li>`;
+    }
+    list.innerHTML = html;
 }
 
 // Utility function
