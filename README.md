@@ -1,4 +1,4 @@
-# <img src='https://codetracklift.github.io/codeTrackLift/logos/mitxPro_logoStacked.jpg' alt='MIT xPro logo' width='30'> Full Stack Bootcamp: Real-Time Bus Tracker Project
+# <img src='https://codetracklift.github.io/codeTrackLift/logos/mitxPro_logoStacked.jpg' alt='MIT xPro logo' width='30'> Real-Time Bus Tracker | Full Stack Bootcamp Project
 
 <img src='./busLogo.ico' alt='Bus Logo' width='30'> ***Try Demo:*** [https://codetracklift.github.io/bustracker](https://codetracklift.github.io/bustracker/)
 
